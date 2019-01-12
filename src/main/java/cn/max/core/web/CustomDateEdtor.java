@@ -9,7 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//这个是全局方法
+//这个是全局方法 //WebBindingInitializer 这个如果用在将control实现，或者对应方法加上@InitBinder，也可以弄成单独的control的局部解析时间，
 public class CustomDateEdtor implements WebBindingInitializer{
 
     @Override
