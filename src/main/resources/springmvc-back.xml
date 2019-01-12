@@ -14,7 +14,14 @@
 	<context:component-scan base-package="cn.max" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
-	
+
+	<!-- 配置全局日期转换器 -->
+	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+		<property name="webBindingInitializer">
+			<bean class="cn.max.core.web.CustomDateEdtor"/>
+		</property>
+	</bean>
+
 	<!-- jsp视图 -->
 	<bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/back_page/"/>
