@@ -8,7 +8,7 @@
 <body>
 <form action="/test/springmvc.do" method="post">
     <input type="text" value="" name="name">
-    <%--<input type="text" value="2015-01-09 09:03:09" name="birthday">--%>
+    <input type="text" value="2015-01-09 09:03:09" name="birthday">
     <input type="submit" value="提交">
 </form>
 </body>
