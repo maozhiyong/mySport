@@ -14,7 +14,7 @@
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
 
-	<!-- 中文过滤器 -->
+	<!-- 中文过滤器 过滤所有request的参数，这个是最外层，所以不是mvc内部，这个是spring在拦截的时候的，因此写在web.xml中-->
 	<filter>
 		<filter-name>encoding</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
