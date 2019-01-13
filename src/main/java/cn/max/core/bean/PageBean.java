@@ -1,17 +1,19 @@
 package cn.max.core.bean;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PageBean<T> {
     private List<T> pageData;
     private Integer currentPage = Integer.valueOf(1);
-    private Integer pageSize = Integer.valueOf(10);
+    private Integer pageSize;
     private Integer totalCount;
 
-    public PageBean(List<T> pageData, Integer totalCount) {
+    public PageBean(List<T> pageData, int totalCount, int pageSize) {
         this.pageData = pageData;
         this.totalCount = totalCount;
+        this.pageSize = pageSize;
     }
 
     public int getPageCount(){
@@ -88,13 +90,49 @@ public class PageBean<T> {
     }
 
     public static int calculateCurrentPageNum(Integer pageNo) {
-        return 1;
+        return (pageNo-1)/5;
     }
 
-    String url;
-    String parameter;
+    public List<String> getPageView() {
+        return pageView;
+    }
+
+    private List<String> pageView;
     public void pageView(String url, String parameter) {
-        this.url = url;
-        this.parameter = parameter;
+        pageView = new ArrayList<>();
+        pageView.add("<font size=2>首页</font>");
+        pageView.add("<font size=2>上一页</font>");
+
+        int pageCount = totalCount/pageSize;
+        for (int i = 1; i <= pageCount; i++) {
+            if (currentPage == i) {
+                pageView.add("<strong>"+currentPage+"</strong>");
+            } else {
+                pageView.add("<a href="+url+"?"+parameter+"&amp;pageNo="+i+">"+i+"</a>");
+            }
+        }
+        pageView.add("共<var>"+pageCount+"</var>页 到第<input type=\"text\" size=\"3\" id=\"PAGENO\"/>页 <input type=\"button\" onclick=\"javascript:window.location.href ='" + url + "?" + parameter + "&amp;pageNo=' + $('#PAGENO').val() \" value=\"确定\" class=\"hand btn60x20\" id=\"skip\"/>");
     }
 }
+/*
+pageView:
+<font size="2">首页</font>
+
+		<font size="2">上一页</font>
+
+		<strong>1</strong>
+
+		<a href="/brand/list.do?&amp;isShow=0&amp;pageNo=2">2</a>
+
+		<a href="/brand/list.do?&amp;isShow=0&amp;pageNo=3">3</a>
+
+		<a href="/brand/list.do?&amp;isShow=0&amp;pageNo=4">4</a>
+
+		<a href="/brand/list.do?&amp;isShow=0&amp;pageNo=5">5</a>
+
+		<a href="/brand/list.do?&amp;isShow=0&amp;pageNo=2"><font size="2">下一页</font></a>
+
+		<a href="/brand/list.do?&amp;isShow=0&amp;pageNo=5"><font size="2">尾页</font></a>
+
+		共<var>5</var>页 到第<input type="text" size="3" id="PAGENO"/>页 <input type="button" onclick="javascript:window.location.href = '/brand/list.do?&amp;isShow=0&amp;pageNo=' + $('#PAGENO').val() " value="确定" class="hand btn60x20" id="skip"/>
+ */
