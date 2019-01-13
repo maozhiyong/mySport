@@ -1,4 +1,4 @@
-package cn.itcast;
+package frame;
 
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;

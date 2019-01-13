@@ -6,10 +6,18 @@
     <title>Insert title here</title>
 </head>
 <body>
+<h2>欢迎来到我的运动中心商场</h2>
 <form action="/test/springmvc.do" method="post">
     <input type="text" value="" name="name">
     <input type="text" value="2015-01-09 09:03:09" name="birthday">
     <input type="submit" value="提交">
 </form>
+
+<h2>这里是后台跳转</h2>
+
+<form action="/admin/index.do" method="post">
+    <input type="submit" value="后台跳转">
+</form>
+
 </body>
 </html>
