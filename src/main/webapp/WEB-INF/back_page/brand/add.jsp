@@ -23,7 +23,6 @@ function uploadPic(){
 	
 	//jquery.form使用方式
 	$("#jvForm").ajaxSubmit(options);
-	
 }
 
 </script>

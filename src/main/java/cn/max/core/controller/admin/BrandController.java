@@ -67,11 +67,13 @@ public class BrandController {
 		
 		return "brand/list";
 	}
+
 	//跳转品牌添加页面
 	@RequestMapping(value= "/brand/toAdd.do")
 	public String toAdd(){
 		return "brand/add";
 	}
+
 	//添加品牌
 	@RequestMapping(value = "/brand/add.do")
 	public String add(Brand brand){
@@ -79,6 +81,7 @@ public class BrandController {
 		brandService.addBrand(brand);
 		return "redirect:/brand/list.do";
 	}
+
 	//删除一个品牌
 	@RequestMapping(value = "/brand/delete.do")
 	public String delete(Integer id,String name,Integer isDisplay,ModelMap model){
