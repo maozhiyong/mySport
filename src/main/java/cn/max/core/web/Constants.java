@@ -1,10 +1,10 @@
 package cn.max.core.web;
 /**
  * 业务常量
- * @author lx
+ * @author max
  *
  */
-public interface Constants {
+public class Constants {
 
 	/**
 	 * 图片服务器

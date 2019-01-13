@@ -11,6 +11,7 @@
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 	<!-- springmvc 扫包  只扫描 Controller ，use-default-filters="false"这个是为了关闭默认的扫包,防止将service又扫描一遍，因为mvc差不多是
 	spring的子类，所以扫重复就会覆盖spring-->
+
 	<context:component-scan base-package="cn.max" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>
