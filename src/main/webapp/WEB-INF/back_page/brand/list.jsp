@@ -15,14 +15,14 @@
 	<div class="clear"></div>
 </div>
 <div class="body-box">
-<form action="/brand/list.do" method="post" style="padding-top:5px;">
-品牌名称: <input type="text" name="name" value="${name }"/>
-	<select name="isDisplay">
-		<option value="1" <c:if test="${isDisplay == 1 }">selected="selected"</c:if> >是</option>
-		<option value="0" <c:if test="${isDisplay == 0 }">selected="selected"</c:if>>不是</option>
-	</select>
-	<input type="submit" class="query" value="查询"/>
-</form>
+	<form action="/brand/list.do" method="post" style="padding-top:5px;">
+		品牌名称: <input type="text" name="name" value="${name }"/>
+		<select name="isDisplay">
+			<option value="1" <c:if test="${isDisplay == 1 }">selected="selected"</c:if> >是</option>
+			<option value="0" <c:if test="${isDisplay == 0 }">selected="selected"</c:if>>不是</option>
+		</select>
+		<input type="submit" class="query" value="查询"/>
+	</form>
 <table cellspacing="1" cellpadding="0" border="0" width="100%" class="pn-ltable">
 	<thead class="pn-lthead">
 		<tr>
@@ -48,7 +48,7 @@
 				<td align="center">${entry.sort }</td>
 				<td align="center"><c:if test="${entry.isDisplay == 1 }">是</c:if><c:if test="${entry.isDisplay == 0 }">不是</c:if></td>
 				<td align="center">
-				<a class="pn-opt" href="#">修改</a> | <a class="pn-opt"  href="/brand/delete.do?id=${entry.id }&name=${name}&isDisplay=${isDisplay}">删除</a>
+				<a class="pn-opt" href="#">修改</a> | <a class="pn-opt" onclick=" if(confirm('您确定删除吗?') == false) {return false} else {window.location.href='/brand/delete.do?id=${entry.id }&name=${name}&isDisplay=${isDisplay}'}" href="javascript:void(0)">删除</a>
 				</td>
 			</tr>
 		</c:forEach>

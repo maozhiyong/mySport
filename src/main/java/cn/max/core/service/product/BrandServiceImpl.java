@@ -5,8 +5,11 @@ import javax.annotation.Resource;
 import cn.max.core.bean.PageBean;
 import cn.max.core.bean.product.Brand;
 import cn.max.core.dao.product.BrandDao;
+import cn.max.core.query.product.BrandQuery;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 /**
  * 品牌事务
@@ -31,5 +34,35 @@ public class BrandServiceImpl implements BrandService {
 	@Override
 	public void addBrand(Brand brand) {
 		brandDao.addBrand(brand);
+	}
+
+	@Override
+	public void deleteBrandByKey(Integer id) {
+		brandDao.deleteBrandByKey(id);
+
+	}
+
+	@Override
+	public void deleteBrandByKeys(Integer[] ids) {
+		brandDao.deleteBrandByKeys(ids);
+
+	}
+
+	@Override
+	public void updateBrandByKey(Brand brand) {
+		brandDao.updateBrandByKey(brand);
+
+	}
+
+	@Override
+	public Brand getBrandByKey(Integer id) {
+		// TODO Auto-generated method stub
+		return brandDao.getBrandByKey(id);
+	}
+
+	@Override
+	public List<Brand> getBrandList(BrandQuery brandQuery) {
+		// TODO Auto-generated method stub
+		return brandDao.getBrandList(brandQuery);
 	}
 }
