@@ -1,3 +1,4 @@
+# 测试
 -- auto-generated definition
 CREATE TABLE test_tb
 (
@@ -6,6 +7,7 @@ CREATE TABLE test_tb
   birthday DATE        NULL
 )ENGINE = InnoDB CHARSET=utf8 COMMENT='单元测试使用';
 
+# 品牌
 DROP TABLE IF EXISTS `bbs_brand`;
 CREATE TABLE `bbs_brand` (
   `id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -18,15 +20,29 @@ CREATE TABLE `bbs_brand` (
   PRIMARY KEY (`id`)
 ) ENGINE =InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='品牌';
 
-insert into `bbs_brand` VALUES(11,'莱尔瑜伽',null,null,null,89,'1');
-insert into `bbs_brand` VALUES(12, '轻装服装',null,null,null,90,'1');
-insert into `bbs_brand` VALUES(13, '艾米达',null,null,null,88,'1');
-insert into `bbs_brand` VALUES(14, '哈他',null,null,null,78,'1');
-insert into `bbs_brand` VALUES(15, '詹姆斯',null,null,null,78,'1');
-insert into `bbs_brand` VALUES(16, '瑜伽树',null,null,null,68,'1');
-insert into `bbs_brand` VALUES(17, '蓝一博人',null,null,null,70,'1');
-insert into `bbs_brand` VALUES(18, 'Eff',null,null,null,48,'1');
-insert into `bbs_brand` VALUES(19, '凯苏',null,null,null,58,'1');
-insert into `bbs_brand` VALUES(20, '扶苏',null,null,null,68,'1');
-insert into `bbs_brand` VALUES(21, '天蓝',null,null,null,68,'1');
-insert into `bbs_brand` VALUES(22, '地方',null,null,null,55,'1');
+
+# 商品
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `product_id` INT(11) NOT NULL AUTO_INCREMENT COMMENT 'product_id',
+  `name` VARCHAR(50) NOT NULL COMMENT '名称',
+  `no` VARCHAR(20) NOT NULL COMMENT '款号',
+  `year` VARCHAR(10) DEFAULT '2019' COMMENT '当前年份',
+  `season` VARCHAR(4) DEFAULT '1111' COMMENT '季节,以四位二进制码进行标识',
+  `sex` VARCHAR(4) DEFAULT '中性' COMMENT '男、女、中性',
+  `keywords` VARCHAR(50) COMMENT '关键字 搜索用',
+  `product_type_id` TINYINT COMMENT '商品类型, 商品类型表主键',
+  `sell_type_id` TINYINT COMMENT '销售类型, 销售类型表主键',
+  `is_alive` TINYINT DEFAULT '2' '上下架状态',
+  `brand_id` TINYINT COMMENT '品牌表主键',
+  `category_id` SMALLINT COMMENT '品类表主键',
+  `shop_id` TINYINT COMMENT '商店表主键',
+  `warehouse_id` TINYINT COMMENT '仓库表主键',
+  `supplier_id` TINYINT COMMENT '供货商表主键',
+  `product_style_id` TINYINT COMMENT '商品风格表主键',
+  `product_story_id` TINYINT COMMENT '主题故事表主键',
+  `add_time` DATETIME COMMENT '商品第一次录入的时间',
+  `modify_admin_id` INT COMMENT '最后一次修改人',
+  `modify_time` DATETIME COMMENT '最后一次修改商品的时间',
+  PRIMARY KEY (`product_id`)
+) ENGINE =InnoDB AUTO_INCREMENT=83 DEFAULT CHARSET=utf8 COMMENT='品牌';
