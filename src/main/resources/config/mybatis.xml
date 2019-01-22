@@ -10,15 +10,16 @@
      http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
      http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
 
-	<!--mybatis  sessionFactory配置-->
+	<!--mybatis  dao层 sessionFactory配置-->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource"/>
-		<property name="mapperLocations" value="classpath:cn/max/core/dao/*.xml"/>
-		<property name="typeAliasesPackage" value="cn.max.core.bean"/>
+		<property name="mapperLocations" value="classpath:cn/max/core/dao/**/*.xml"/>
+		<property name="typeAliasesPackage" value="cn.max.core.bean, cn.max.core.query"/>
 	</bean>
 	
 	<!-- 扫包  -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!--这西面的dao,不能导入其他的service, 因为这个需要与xml 进行对应-->
 		<property name="basePackage"  value="cn.max.core.dao"/>
 	</bean>
 	

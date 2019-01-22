@@ -15,20 +15,19 @@ public interface BrandService {
 
 	PageBean getBrandListWithPage(Brand brand);
 
-	public List<Brand> getBrandList(BrandQuery brandQuery);
+	List<Brand> getBrandList(BrandQuery brandQuery);
 
 	//添加品牌
-	public void addBrand(Brand brand);
+	void addBrand(Brand brand);
 
 	//删除
-	public void deleteBrandByKey(Integer id);
+	void deleteBrandByKey(Integer id);
 
 	//删除 批量
-	public void deleteBrandByKeys(Integer[] ids);//List<Integer>  ids
+	void deleteBrandByKeys(Integer[] ids);//List<Integer>  ids
 
 	//修改
-	public void updateBrandByKey(Brand brand);
+	void updateBrandByKey(Brand brand);
 
-
-	public Brand getBrandByKey(Integer id);
+	Brand getBrandByKey(Integer id);
 }

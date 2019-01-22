@@ -13,7 +13,62 @@
 		<result column="sort" property="sort"/>
 		<result column="is_display" property="isDisplay"/>
 	</resultMap>
-	
+
+
+	<!-- #{isDisplay} 就是加上引号的匹配， 而${xxx} 则是原生的，一般是用于指示字段 -->
+	<!--可以动态选择要显示的数据是什么fields是参数，比如 id,name -->
+	<sql id="brandSelector">
+		select
+		<if test="fields != null">
+			${fields}
+		</if>
+		<if test="fields == null">
+			id , name ,description,img_url,sort,is_display
+		</if>
+		from bbs_brand
+	</sql>
+
+	<!--进行模糊匹配-->
+	<sql id="brandWhere">
+		<where>
+			<if test="isDisplay != null">
+				is_display = #{isDisplay}
+			</if>
+			<if test="name != null">
+				<if test="nameLike == false">
+					and name = #{name}
+				</if>
+				<if test="nameLike == true">
+					and name like "%"#{name}"%"
+				</if>
+			</if>
+		</where>
+	</sql>
+
+	<!--数组形式，可以多个条件组合orderBy-->
+	<sql id="brandOrderBy">
+		<if test="fieldOrders != null and fieldOrders.size != 0">
+			ORDER BY
+			<foreach collection="fieldOrders" item="fieldOrder" separator=",">
+				${fieldOrder.field} ${fieldOrder.order}
+			</foreach>
+		</if>
+	</sql>
+
+	<sql id="brandLimit">
+		<if test="startRow != null">
+			limit #{startRow}, #{pageSize}
+		</if>
+	</sql>
+
+	<!-- 查询品牌   get*   -->
+	<select id="getBrandList" parameterType="BrandQuery" resultMap="brand">
+		<include refid="brandSelector"/>
+		<include refid="brandWhere"/>
+		<include refid="brandOrderBy"/>
+		<include refid="brandLimit"/>
+	</select>
+
 	<!-- 查询品牌   get*   -->
 	<select id="getBrandListWithPage" parameterType="Brand" resultMap="brand">
 		select id , name ,description,img_url,sort,is_display
