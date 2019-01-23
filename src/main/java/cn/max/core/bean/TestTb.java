@@ -31,6 +31,5 @@ public class TestTb {
 	public void setBirthday(Date birthday) {
 		this.birthday = birthday;
 	}
-	
 
 }
