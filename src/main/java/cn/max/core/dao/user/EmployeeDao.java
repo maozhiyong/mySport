@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.user;
+package cn.max.core.dao.user;
 
 import java.util.List;
 
-import cn.itcast.core.bean.user.Employee;
-import cn.itcast.core.query.user.EmployeeQuery;
+import cn.max.core.bean.user.Employee;
+import cn.max.core.query.user.EmployeeQuery;
 
 public interface EmployeeDao {
 

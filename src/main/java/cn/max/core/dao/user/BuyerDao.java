@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.user;
+package cn.max.core.dao.user;
 
 import java.util.List;
 
-import cn.itcast.core.bean.user.Buyer;
-import cn.itcast.core.query.user.BuyerQuery;
+import cn.max.core.bean.user.Buyer;
+import cn.max.core.query.user.BuyerQuery;
 
 public interface BuyerDao {
 

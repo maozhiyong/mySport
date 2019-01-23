@@ -1,19 +1,17 @@
-package cn.itcast.core.service.user;
+package cn.max.core.service.user;
 
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.user.Employee;
-import cn.itcast.core.dao.user.EmployeeDao;
-import cn.itcast.core.query.user.EmployeeQuery;
+import cn.max.core.bean.user.Employee;
+import cn.max.core.dao.user.EmployeeDao;
+import cn.max.core.query.user.EmployeeQuery;
 /**
  * 员工
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +66,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getEmployeeListWithPage(EmployeeQuery employeeQuery) {
-		Pagination p = new Pagination(employeeQuery.getPageNo(),employeeQuery.getPageSize(),employeeDao.getEmployeeListCount(employeeQuery));
-		p.setList(employeeDao.getEmployeeListWithPage(employeeQuery));
-		return p;
+	public PageBean getEmployeeListWithPage(EmployeeQuery employeeQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setTotalCount(employeeDao.getEmployeeListCount(employeeQuery));
+		pageBean.setPageSize(employeeQuery.getPageSize());
+		pageBean.setCurrentPage(employeeQuery.getPageNo());
+		pageBean.setPageData(employeeDao.getEmployeeListWithPage(employeeQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

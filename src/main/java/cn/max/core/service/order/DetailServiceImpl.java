@@ -1,19 +1,18 @@
-package cn.itcast.core.service.order;
+package cn.max.core.service.order;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.order.Detail;
-import cn.itcast.core.dao.order.DetailDao;
-import cn.itcast.core.query.order.DetailQuery;
+import cn.max.core.bean.order.Detail;
+import cn.max.core.dao.order.DetailDao;
+import cn.max.core.query.order.DetailQuery;
 /**
  * 订单子项(订单详情)
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +67,13 @@ public class DetailServiceImpl implements DetailService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getDetailListWithPage(DetailQuery detailQuery) {
-		Pagination p = new Pagination(detailQuery.getPageNo(),detailQuery.getPageSize(),detailDao.getDetailListCount(detailQuery));
-		p.setList(detailDao.getDetailListWithPage(detailQuery));
-		return p;
+	public PageBean getDetailListWithPage(DetailQuery detailQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(detailQuery.getPageNo());
+		pageBean.setPageData(detailDao.getDetailListWithPage(detailQuery));
+		pageBean.setPageSize(detailQuery.getPageSize());
+		pageBean.setTotalCount(detailDao.getDetailListCount(detailQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

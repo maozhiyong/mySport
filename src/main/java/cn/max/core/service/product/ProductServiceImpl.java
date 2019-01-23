@@ -1,19 +1,18 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Product;
-import cn.itcast.core.dao.product.ProductDao;
-import cn.itcast.core.query.product.ProductQuery;
+import cn.max.core.bean.product.Product;
+import cn.max.core.dao.product.ProductDao;
+import cn.max.core.query.product.ProductQuery;
 /**
  * 商品事务层
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -67,11 +66,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getProductListWithPage(ProductQuery productQuery) {
-		Pagination p = new Pagination(productQuery.getPageNo(),productQuery.getPageSize(),productDao.getProductListCount(productQuery));
-		List<Product> products = productDao.getProductListWithPage(productQuery);
-		p.setList(products);
-		return p;
+	public PageBean getProductListWithPage(ProductQuery productQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(productQuery.getPageNo());
+		pageBean.setPageData(productDao.getProductListWithPage(productQuery));
+		pageBean.setPageSize(productQuery.getPageSize());
+		pageBean.setTotalCount(productDao.getProductListCount(productQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

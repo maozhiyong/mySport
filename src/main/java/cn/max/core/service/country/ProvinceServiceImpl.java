@@ -1,19 +1,17 @@
-package cn.itcast.core.service.country;
+package cn.max.core.service.country;
 
 import java.util.List;
 
 import javax.annotation.Resource;
-
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.country.Province;
-import cn.itcast.core.dao.country.ProvinceDao;
-import cn.itcast.core.query.country.ProvinceQuery;
+import cn.max.core.bean.country.Province;
+import cn.max.core.dao.country.ProvinceDao;
+import cn.max.core.query.country.ProvinceQuery;
 /**
  * 省
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +66,13 @@ public class ProvinceServiceImpl implements ProvinceService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getProvinceListWithPage(ProvinceQuery provinceQuery) {
-		Pagination p = new Pagination(provinceQuery.getPageNo(),provinceQuery.getPageSize(),provinceDao.getProvinceListCount(provinceQuery));
-		p.setList(provinceDao.getProvinceListWithPage(provinceQuery));
-		return p;
+	public PageBean getProvinceListWithPage(ProvinceQuery provinceQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(provinceQuery.getPageNo());
+		pageBean.setPageData(provinceDao.getProvinceListWithPage(provinceQuery));
+		pageBean.setPageSize(provinceQuery.getPageSize());
+		pageBean.setTotalCount(provinceDao.getProvinceListCount(provinceQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

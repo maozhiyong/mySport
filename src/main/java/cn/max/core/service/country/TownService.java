@@ -1,14 +1,14 @@
-package cn.itcast.core.service.country;
+package cn.max.core.service.country;
 
 import java.util.List;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.country.Town;
-import cn.itcast.core.query.country.TownQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.country.Town;
+import cn.max.core.query.country.TownQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface TownService {
@@ -57,7 +57,7 @@ public interface TownService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getTownListWithPage(TownQuery townQuery);
+	public PageBean getTownListWithPage(TownQuery townQuery);
 
 	/**
 	 * 根据条件查询

@@ -1,14 +1,14 @@
-package cn.itcast.core.service.user;
+package cn.max.core.service.user;
 
 import java.util.List;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.user.Buyer;
-import cn.itcast.core.query.user.BuyerQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.user.Buyer;
+import cn.max.core.query.user.BuyerQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface BuyerService {
@@ -57,7 +57,7 @@ public interface BuyerService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getBuyerListWithPage(BuyerQuery buyerQuery);
+	public PageBean getBuyerListWithPage(BuyerQuery buyerQuery);
 
 	/**
 	 * 根据条件查询

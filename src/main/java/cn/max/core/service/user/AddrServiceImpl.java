@@ -1,19 +1,18 @@
-package cn.itcast.core.service.user;
+package cn.max.core.service.user;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.user.Addr;
-import cn.itcast.core.dao.user.AddrDao;
-import cn.itcast.core.query.user.AddrQuery;
+import cn.max.core.bean.user.Addr;
+import cn.max.core.dao.user.AddrDao;
+import cn.max.core.query.user.AddrQuery;
 /**
  * 地址
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +67,13 @@ public class AddrServiceImpl implements AddrService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getAddrListWithPage(AddrQuery addrQuery) {
-		Pagination p = new Pagination(addrQuery.getPageNo(),addrQuery.getPageSize(),addrDao.getAddrListCount(addrQuery));
-		p.setList(addrDao.getAddrListWithPage(addrQuery));
-		return p;
+	public PageBean getAddrListWithPage(AddrQuery addrQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(addrQuery.getPageNo());
+		pageBean.setPageData(addrDao.getAddrListWithPage(addrQuery));
+		pageBean.setPageSize(addrQuery.getPageSize());
+		pageBean.setTotalCount(addrDao.getAddrListCount(addrQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

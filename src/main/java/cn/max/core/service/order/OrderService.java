@@ -1,14 +1,14 @@
-package cn.itcast.core.service.order;
+package cn.max.core.service.order;
 
 import java.util.List;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.order.Order;
-import cn.itcast.core.query.order.OrderQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.order.Order;
+import cn.max.core.query.order.OrderQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface OrderService {
@@ -57,7 +57,7 @@ public interface OrderService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getOrderListWithPage(OrderQuery orderQuery);
+	public PageBean getOrderListWithPage(OrderQuery orderQuery);
 
 	/**
 	 * 根据条件查询

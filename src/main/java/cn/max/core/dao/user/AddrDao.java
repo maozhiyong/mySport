@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.user;
+package cn.max.core.dao.user;
 
 import java.util.List;
 
-import cn.itcast.core.bean.user.Addr;
-import cn.itcast.core.query.user.AddrQuery;
+import cn.max.core.bean.user.Addr;
+import cn.max.core.query.user.AddrQuery;
 
 public interface AddrDao {
 

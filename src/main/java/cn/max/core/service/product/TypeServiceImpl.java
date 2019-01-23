@@ -1,19 +1,18 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Type;
-import cn.itcast.core.dao.product.TypeDao;
-import cn.itcast.core.query.product.TypeQuery;
+import cn.max.core.bean.product.Type;
+import cn.max.core.dao.product.TypeDao;
+import cn.max.core.query.product.TypeQuery;
 /**
  * 商品类型
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +67,13 @@ public class TypeServiceImpl implements TypeService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getTypeListWithPage(TypeQuery typeQuery) {
-		Pagination p = new Pagination(typeQuery.getPageNo(),typeQuery.getPageSize(),typeDao.getTypeListCount(typeQuery));
-		p.setList(typeDao.getTypeListWithPage(typeQuery));
-		return p;
+	public PageBean getTypeListWithPage(TypeQuery typeQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(typeQuery.getPageNo());
+		pageBean.setPageData(typeDao.getTypeListWithPage(typeQuery));
+		pageBean.setPageSize(typeQuery.getPageSize());
+		pageBean.setTotalCount(typeDao.getTypeListCount(typeQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

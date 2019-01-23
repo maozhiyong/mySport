@@ -1,19 +1,18 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Feature;
-import cn.itcast.core.dao.product.FeatureDao;
-import cn.itcast.core.query.product.FeatureQuery;
+import cn.max.core.bean.product.Feature;
+import cn.max.core.dao.product.FeatureDao;
+import cn.max.core.query.product.FeatureQuery;
 /**
  * 商品属性事务层
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +67,13 @@ public class FeatureServiceImpl implements FeatureService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getFeatureListWithPage(FeatureQuery featureQuery) {
-		Pagination p = new Pagination(featureQuery.getPageNo(),featureQuery.getPageSize(),featureDao.getFeatureListCount(featureQuery));
-		p.setList(featureDao.getFeatureListWithPage(featureQuery));
-		return p;
+	public PageBean getFeatureListWithPage(FeatureQuery featureQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(featureQuery.getPageNo());
+		pageBean.setPageData(featureDao.getFeatureListWithPage(featureQuery));
+		pageBean.setPageSize(featureQuery.getPageSize());
+		pageBean.setTotalCount(featureDao.getFeatureListCount(featureQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

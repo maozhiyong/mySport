@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.product;
+package cn.max.core.dao.product;
 
 import java.util.List;
 
-import cn.itcast.core.bean.product.Type;
-import cn.itcast.core.query.product.TypeQuery;
+import cn.max.core.bean.product.Type;
+import cn.max.core.query.product.TypeQuery;
 
 public interface TypeDao {
 

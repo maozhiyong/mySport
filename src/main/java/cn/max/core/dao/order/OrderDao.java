@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.order;
+package cn.max.core.dao.order;
 
 import java.util.List;
 
-import cn.itcast.core.bean.order.Order;
-import cn.itcast.core.query.order.OrderQuery;
+import cn.max.core.bean.order.Order;
+import cn.max.core.query.order.OrderQuery;
 
 public interface OrderDao {
 

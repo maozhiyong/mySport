@@ -1,14 +1,14 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Sku;
-import cn.itcast.core.query.product.SkuQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.product.Sku;
+import cn.max.core.query.product.SkuQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface SkuService {
@@ -57,7 +57,7 @@ public interface SkuService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getSkuListWithPage(SkuQuery skuQuery);
+	public PageBean getSkuListWithPage(SkuQuery skuQuery);
 
 	/**
 	 * 根据条件查询

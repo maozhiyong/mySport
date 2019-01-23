@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.product;
+package cn.max.core.dao.product;
 
 import java.util.List;
 
-import cn.itcast.core.bean.product.Product;
-import cn.itcast.core.query.product.ProductQuery;
+import cn.max.core.bean.product.Product;
+import cn.max.core.query.product.ProductQuery;
 
 public interface ProductDao {
 

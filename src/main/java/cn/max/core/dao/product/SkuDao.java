@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.product;
+package cn.max.core.dao.product;
 
 import java.util.List;
 
-import cn.itcast.core.bean.product.Sku;
-import cn.itcast.core.query.product.SkuQuery;
+import cn.max.core.bean.product.Sku;
+import cn.max.core.query.product.SkuQuery;
 
 public interface SkuDao {
 

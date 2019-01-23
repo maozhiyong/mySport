@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.country;
+package cn.max.core.dao.country;
 
 import java.util.List;
 
-import cn.itcast.core.bean.country.City;
-import cn.itcast.core.query.country.CityQuery;
+import cn.max.core.bean.country.City;
+import cn.max.core.query.country.CityQuery;
 
 public interface CityDao {
 

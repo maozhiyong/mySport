@@ -1,19 +1,19 @@
-package cn.itcast.core.service.country;
+package cn.max.core.service.country;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.country.City;
-import cn.itcast.core.dao.country.CityDao;
-import cn.itcast.core.query.country.CityQuery;
+import cn.max.core.bean.country.City;
+import cn.max.core.dao.country.CityDao;
+import cn.max.core.query.country.CityQuery;
 /**
  * 市
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +68,13 @@ public class CityServiceImpl implements CityService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getCityListWithPage(CityQuery cityQuery) {
-		Pagination p = new Pagination(cityQuery.getPageNo(),cityQuery.getPageSize(),cityDao.getCityListCount(cityQuery));
-		p.setList(cityDao.getCityListWithPage(cityQuery));
-		return p;
+	public PageBean getCityListWithPage(CityQuery cityQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(cityQuery.getPageNo());
+		pageBean.setPageData(cityDao.getCityListWithPage(cityQuery));
+		pageBean.setPageSize(cityQuery.getPageSize());
+		pageBean.setTotalCount(cityDao.getCityListCount(cityQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

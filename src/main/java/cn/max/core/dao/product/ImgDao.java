@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.product;
+package cn.max.core.dao.product;
 
 import java.util.List;
 
-import cn.itcast.core.bean.product.Img;
-import cn.itcast.core.query.product.ImgQuery;
+import cn.max.core.bean.product.Img;
+import cn.max.core.query.product.ImgQuery;
 
 public interface ImgDao {
 

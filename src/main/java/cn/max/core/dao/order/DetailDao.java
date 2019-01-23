@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.order;
+package cn.max.core.dao.order;
 
 import java.util.List;
 
-import cn.itcast.core.bean.order.Detail;
-import cn.itcast.core.query.order.DetailQuery;
+import cn.max.core.bean.order.Detail;
+import cn.max.core.query.order.DetailQuery;
 
 public interface DetailDao {
 

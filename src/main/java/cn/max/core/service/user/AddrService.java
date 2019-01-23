@@ -1,14 +1,13 @@
-package cn.itcast.core.service.user;
+package cn.max.core.service.user;
 
 import java.util.List;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.user.Addr;
-import cn.itcast.core.query.user.AddrQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.user.Addr;
+import cn.max.core.query.user.AddrQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface AddrService {
@@ -57,7 +56,7 @@ public interface AddrService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getAddrListWithPage(AddrQuery addrQuery);
+	public PageBean getAddrListWithPage(AddrQuery addrQuery);
 
 	/**
 	 * 根据条件查询

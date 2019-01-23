@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.country;
+package cn.max.core.dao.country;
 
 import java.util.List;
 
-import cn.itcast.core.bean.country.Province;
-import cn.itcast.core.query.country.ProvinceQuery;
+import cn.max.core.bean.country.Province;
+import cn.max.core.query.country.ProvinceQuery;
 
 public interface ProvinceDao {
 

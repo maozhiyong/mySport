@@ -1,19 +1,19 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Sku;
-import cn.itcast.core.dao.product.SkuDao;
-import cn.itcast.core.query.product.SkuQuery;
+import cn.max.core.bean.product.Sku;
+import cn.max.core.dao.product.SkuDao;
+import cn.max.core.query.product.SkuQuery;
 /**
  * 最小销售单元事务层
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +68,13 @@ public class SkuServiceImpl implements SkuService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getSkuListWithPage(SkuQuery skuQuery) {
-		Pagination p = new Pagination(skuQuery.getPageNo(),skuQuery.getPageSize(),skuDao.getSkuListCount(skuQuery));
-		p.setList(skuDao.getSkuListWithPage(skuQuery));
-		return p;
+	public PageBean getSkuListWithPage(SkuQuery skuQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(skuQuery.getPageNo());
+		pageBean.setPageData(skuDao.getSkuListWithPage(skuQuery));
+		pageBean.setPageSize(skuQuery.getPageSize());
+		pageBean.setTotalCount(skuDao.getSkuListCount(skuQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

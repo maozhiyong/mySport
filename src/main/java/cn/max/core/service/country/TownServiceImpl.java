@@ -1,19 +1,19 @@
-package cn.itcast.core.service.country;
+package cn.max.core.service.country;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.country.Town;
-import cn.itcast.core.dao.country.TownDao;
-import cn.itcast.core.query.country.TownQuery;
+import cn.max.core.bean.country.Town;
+import cn.max.core.dao.country.TownDao;
+import cn.max.core.query.country.TownQuery;
 /**
  * 县/区
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +68,13 @@ public class TownServiceImpl implements TownService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getTownListWithPage(TownQuery townQuery) {
-		Pagination p = new Pagination(townQuery.getPageNo(),townQuery.getPageSize(),townDao.getTownListCount(townQuery));
-		p.setList(townDao.getTownListWithPage(townQuery));
-		return p;
+	public PageBean getTownListWithPage(TownQuery townQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(townQuery.getPageNo());
+		pageBean.setPageData(townDao.getTownListWithPage(townQuery));
+		pageBean.setPageSize(townQuery.getPageSize());
+		pageBean.setTotalCount(townDao.getTownListCount(townQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

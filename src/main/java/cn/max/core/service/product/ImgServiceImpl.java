@@ -1,19 +1,19 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import cn.max.core.bean.product.Img;
+import cn.max.core.dao.product.ImgDao;
+import cn.max.core.query.product.ImgQuery;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Img;
-import cn.itcast.core.dao.product.ImgDao;
-import cn.itcast.core.query.product.ImgQuery;
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +68,13 @@ public class ImgServiceImpl implements ImgService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getImgListWithPage(ImgQuery imgQuery) {
-		Pagination p = new Pagination(imgQuery.getPageNo(),imgQuery.getPageSize(),imgDao.getImgListCount(imgQuery));
-		p.setList(imgDao.getImgListWithPage(imgQuery));
-		return p;
+	public PageBean getImgListWithPage(ImgQuery imgQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(imgQuery.getPageNo());
+		pageBean.setPageData(imgDao.getImgListWithPage(imgQuery));
+		pageBean.setPageSize(imgQuery.getPageSize());
+		pageBean.setTotalCount(imgDao.getImgListCount(imgQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

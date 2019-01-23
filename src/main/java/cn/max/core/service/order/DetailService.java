@@ -1,14 +1,13 @@
-package cn.itcast.core.service.order;
+package cn.max.core.service.order;
 
 import java.util.List;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.order.Detail;
-import cn.itcast.core.query.order.DetailQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.order.Detail;
+import cn.max.core.query.order.DetailQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface DetailService {
@@ -57,7 +56,7 @@ public interface DetailService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getDetailListWithPage(DetailQuery detailQuery);
+	public PageBean getDetailListWithPage(DetailQuery detailQuery);
 
 	/**
 	 * 根据条件查询

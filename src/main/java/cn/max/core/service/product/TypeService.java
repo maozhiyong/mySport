@@ -1,14 +1,14 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Type;
-import cn.itcast.core.query.product.TypeQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.product.Type;
+import cn.max.core.query.product.TypeQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface TypeService {
@@ -57,7 +57,7 @@ public interface TypeService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getTypeListWithPage(TypeQuery typeQuery);
+	public PageBean getTypeListWithPage(TypeQuery typeQuery);
 
 	/**
 	 * 根据条件查询

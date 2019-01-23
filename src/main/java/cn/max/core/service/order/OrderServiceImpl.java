@@ -1,19 +1,19 @@
-package cn.itcast.core.service.order;
+package cn.max.core.service.order;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.order.Order;
-import cn.itcast.core.dao.order.OrderDao;
-import cn.itcast.core.query.order.OrderQuery;
+import cn.max.core.bean.order.Order;
+import cn.max.core.dao.order.OrderDao;
+import cn.max.core.query.order.OrderQuery;
 /**
  * 订单主
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +68,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getOrderListWithPage(OrderQuery orderQuery) {
-		Pagination p = new Pagination(orderQuery.getPageNo(),orderQuery.getPageSize(),orderDao.getOrderListCount(orderQuery));
-		p.setList(orderDao.getOrderListWithPage(orderQuery));
-		return p;
+	public PageBean getOrderListWithPage(OrderQuery orderQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(orderQuery.getPageNo());
+		pageBean.setPageData(orderDao.getOrderListWithPage(orderQuery));
+		pageBean.setPageSize(orderQuery.getPageSize());
+		pageBean.setTotalCount(orderDao.getOrderListCount(orderQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

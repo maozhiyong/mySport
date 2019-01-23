@@ -1,14 +1,13 @@
-package cn.itcast.core.service.country;
+package cn.max.core.service.country;
 
 import java.util.List;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.country.Province;
-import cn.itcast.core.query.country.ProvinceQuery;
+import cn.max.core.bean.PageBean;
+import cn.max.core.bean.country.Province;
+import cn.max.core.query.country.ProvinceQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午01:50:28]
  */
 public interface ProvinceService {
@@ -57,7 +56,7 @@ public interface ProvinceService {
 	 *            查询条件
 	 * @return
 	 */
-	public Pagination getProvinceListWithPage(ProvinceQuery provinceQuery);
+	public PageBean getProvinceListWithPage(ProvinceQuery provinceQuery);
 
 	/**
 	 * 根据条件查询

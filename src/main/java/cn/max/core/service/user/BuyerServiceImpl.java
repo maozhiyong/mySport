@@ -1,19 +1,19 @@
-package cn.itcast.core.service.user;
+package cn.max.core.service.user;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.user.Buyer;
-import cn.itcast.core.dao.user.BuyerDao;
-import cn.itcast.core.query.user.BuyerQuery;
+import cn.max.core.bean.user.Buyer;
+import cn.max.core.dao.user.BuyerDao;
+import cn.max.core.query.user.BuyerQuery;
 /**
  * 购买者
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +68,13 @@ public class BuyerServiceImpl implements BuyerService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getBuyerListWithPage(BuyerQuery buyerQuery) {
-		Pagination p = new Pagination(buyerQuery.getPageNo(),buyerQuery.getPageSize(),buyerDao.getBuyerListCount(buyerQuery));
-		p.setList(buyerDao.getBuyerListWithPage(buyerQuery));
-		return p;
+	public PageBean getBuyerListWithPage(BuyerQuery buyerQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(buyerQuery.getPageNo());
+		pageBean.setPageData(buyerDao.getBuyerListWithPage(buyerQuery));
+		pageBean.setPageSize(buyerQuery.getPageSize());
+		pageBean.setTotalCount(buyerDao.getBuyerListCount(buyerQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

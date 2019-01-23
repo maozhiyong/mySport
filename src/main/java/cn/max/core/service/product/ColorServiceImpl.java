@@ -1,19 +1,18 @@
-package cn.itcast.core.service.product;
+package cn.max.core.service.product;
 
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import cn.max.core.bean.PageBean;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import cn.itcast.common.page.Pagination;
-import cn.itcast.core.bean.product.Color;
-import cn.itcast.core.dao.product.ColorDao;
-import cn.itcast.core.query.product.ColorQuery;
+import cn.max.core.bean.product.Color;
+import cn.max.core.dao.product.ColorDao;
+import cn.max.core.query.product.ColorQuery;
 /**
  * 颜色
- * @author lixu
+ * @author max
  * @Date [2014-3-27 下午03:31:57]
  */
 @Service
@@ -68,10 +67,13 @@ public class ColorServiceImpl implements ColorService {
 	}
 	
 	@Transactional(readOnly = true)
-	public Pagination getColorListWithPage(ColorQuery colorQuery) {
-		Pagination p = new Pagination(colorQuery.getPageNo(),colorQuery.getPageSize(),colorDao.getColorListCount(colorQuery));
-		p.setList(colorDao.getColorListWithPage(colorQuery));
-		return p;
+	public PageBean getColorListWithPage(ColorQuery colorQuery) {
+		PageBean pageBean = new PageBean();
+		pageBean.setCurrentPage(colorQuery.getPageNo());
+		pageBean.setPageData(colorDao.getColorListWithPage(colorQuery));
+		pageBean.setPageSize(colorQuery.getPageSize());
+		pageBean.setTotalCount(colorDao.getColorListCount(colorQuery));
+		return pageBean;
 	}
 	
 	@Transactional(readOnly = true)

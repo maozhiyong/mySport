@@ -1,9 +1,9 @@
-package cn.itcast.core.dao.product;
+package cn.max.core.dao.product;
 
 import java.util.List;
 
-import cn.itcast.core.bean.product.Feature;
-import cn.itcast.core.query.product.FeatureQuery;
+import cn.max.core.bean.product.Feature;
+import cn.max.core.query.product.FeatureQuery;
 
 public interface FeatureDao {
 
