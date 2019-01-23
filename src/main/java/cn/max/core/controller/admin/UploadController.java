@@ -22,7 +22,7 @@ import com.sun.jersey.api.client.WebResource;
  * 商品
  * 品牌
  * 商品介绍Fck
- * @author lx
+ * @author max
  *
  */
 @Controller

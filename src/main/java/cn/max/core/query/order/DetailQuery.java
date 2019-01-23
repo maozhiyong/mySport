@@ -1,11 +1,11 @@
-package cn.itcast.core.query.order;
+package cn.max.core.query.order;
 
 import java.util.*;
-import cn.itcast.core.query.BaseQuery;
+import cn.max.core.query.BaseQuery;
 
 /**
  * 订单详情对象
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午05:58:00]
  */
 public class DetailQuery extends BaseQuery {

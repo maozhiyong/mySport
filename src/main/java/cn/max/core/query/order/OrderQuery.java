@@ -1,14 +1,14 @@
-package cn.itcast.core.query.order;
+package cn.max.core.query.order;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cn.itcast.core.query.BaseQuery;
+import cn.max.core.query.BaseQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午05:58:00]
  */
 public class OrderQuery extends BaseQuery {

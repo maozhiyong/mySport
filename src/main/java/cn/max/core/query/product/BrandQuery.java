@@ -5,7 +5,7 @@ import java.util.List;
 
 /**
  * 品牌  查询专用对象
- * @author lx
+ * @author max
  *
  */
 public class BrandQuery {

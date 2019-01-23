@@ -1,14 +1,14 @@
-package cn.itcast.core.query.user;
+package cn.max.core.query.user;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import cn.itcast.core.query.BaseQuery;
+import cn.max.core.query.BaseQuery;
 
 /**
  * 购买者条件对象
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午05:58:00]
  */
 public class BuyerQuery extends BaseQuery {

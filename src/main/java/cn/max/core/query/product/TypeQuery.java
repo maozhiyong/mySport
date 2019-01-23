@@ -1,13 +1,13 @@
-package cn.itcast.core.query.product;
+package cn.max.core.query.product;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.itcast.core.query.BaseQuery;
+import cn.max.core.query.BaseQuery;
 
 /**
  * 商品类型条件对象
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午05:58:00]
  */
 public class TypeQuery extends BaseQuery {

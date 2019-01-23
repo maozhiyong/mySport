@@ -1,10 +1,10 @@
-package cn.itcast.core.query;
+package cn.max.core.query;
 
 import java.io.Serializable;
 
 /**
  * 条件对象公用对象
- * @author lx
+ * @author max
  */
 public class BaseQuery implements Serializable{
 

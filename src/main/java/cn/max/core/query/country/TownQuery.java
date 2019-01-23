@@ -1,13 +1,13 @@
-package cn.itcast.core.query.country;
+package cn.max.core.query.country;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import cn.itcast.core.query.BaseQuery;
+import cn.max.core.query.BaseQuery;
 
 /**
  * 
- * @author lixu
+ * @author max
  * @Date [2014-3-28 下午05:58:00]
  */
 public class TownQuery extends BaseQuery {
