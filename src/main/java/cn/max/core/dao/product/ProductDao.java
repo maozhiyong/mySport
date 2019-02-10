@@ -15,31 +15,31 @@ public interface ProductDao {
 
 	/**
 	 * 根据主键查找
-	 * @param productQuery
+	 * @param id
 	 */
 	public Product getProductByKey(Integer id);
 
 	/**
 	 * 根据主键批量查找
-	 * @param productQuery
+	 * @param idList
 	 */
 	public List<Product> getProductsByKeys(List<Integer> idList);
 
 	/**
 	 * 根据主键删除
-	 * @param productQuery
+	 * @param id
 	 */
 	public Integer deleteByKey(Integer id);
 
 	/**
 	 * 根据主键批量删除
-	 * @param productQuery
+	 * @param idList
 	 */
 	public Integer deleteByKeys(List<Integer> idList);
 
 	/**
 	 * 根据主键更新
-	 * @param productQuery
+	 * @param product
 	 */
 	public Integer updateProductByKey(Product product);
 

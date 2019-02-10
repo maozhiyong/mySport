@@ -14,7 +14,8 @@ public class TestProduct extends SpringJunitTest{
     ProductService productService;
     @Test
     public void testList() {
-        List<Product> productList = productService.getProductList(new ProductQuery());
+        ProductQuery productQuery = new ProductQuery();
+        List<Product> productList = productService.getProductList(productQuery);
         for (Product product : productList) {
             System.out.println(product.toString());
         }

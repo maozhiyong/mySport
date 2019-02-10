@@ -26,8 +26,10 @@ public class BaseQuery implements Serializable{
 	}
 	public void setPageNo(int pageNo) {
 		this.pageNo = pageNo;
-		this.startRow = (pageNo-1)*this.pageSize;
+		int startRow = (pageNo-1)*this.pageSize;
+		this.startRow =  startRow < 0 ? 0 : startRow;
 	}
+
 	public int getPageSize() {
 		return pageSize;
 	}

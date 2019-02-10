@@ -14,7 +14,7 @@
         function optDelete(name, isDisplay) {
 		    //批量删除 :checked 就是指该name的input标签中 目前checked属性
             var checkedSize = $("input[name='ids']:checked").size();
-			if (checkedSize <= 0) {
+			if (checkedSize &lt;= 0) {
 			    alert("请至少选择一个");
 			    return
 			}

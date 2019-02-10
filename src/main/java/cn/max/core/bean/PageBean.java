@@ -1,6 +1,5 @@
 package cn.max.core.bean;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,7 +89,11 @@ public class PageBean<T> {
     }
 
     public static int calculateCurrentPageNum(Integer pageNo) {
-        return (pageNo-1)/5;
+        if (pageNo == null ||  pageNo <= 5) {
+            return 1;
+        } else {
+            return (pageNo-1)/5;
+        }
     }
 
     public List<String> getPageView() {
