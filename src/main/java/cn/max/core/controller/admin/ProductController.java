@@ -79,11 +79,12 @@ public class ProductController {
 			//回显查询条件
 			model.addAttribute("isShow", isShow);
 		}else{
-			productQuery.setIsShow(1);
-			params.append("&").append("isShow=").append(1);
+			productQuery.setIsShow(0);
+			params.append("&").append("isShow=").append(0);
 			//回显查询条件
-			model.addAttribute("isShow", 1);
+			model.addAttribute("isShow", 0);
 		}
+
 		//设置页号
 		productQuery.setPageNo(PageBean.calculateCurrentPageNum(pageNo));
 		//设置每页数
