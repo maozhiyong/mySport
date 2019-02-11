@@ -8,7 +8,8 @@
 	<script type="text/javascript">
 		//上架
 		function isShow(pageNo,name,brandId,isShow){
-			if(Pn.checkedCount('ids')&lt;=0) {
+			// alert("isShow!");
+			if(Pn.checkedCount('ids')<=0) {
 				alert("请至少选择一个!");
 				return;
 			}
@@ -16,6 +17,7 @@
 				return;
 			}
 
+			// 下面的是jquery的方式
 			$("#jvForm").attr("action","isShow.do?pageNo=" + pageNo + "&name=" + name + "&brandId=" + brandId + "&isShow=" + isShow);
 			$("#jvForm").submit();
 		}
