@@ -9,7 +9,7 @@
 		//上架
 		function isShow(pageNo,name,brandId,isShow){
 			// alert("isShow!");
-			if(Pn.checkedCount('ids')<=0) {
+			if(Pn.checkedCount('ids')<=0) {  //这种地方不能优化为xml的格式，因为这里是java代码
 				alert("请至少选择一个!");
 				return;
 			}
