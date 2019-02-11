@@ -1,10 +1,17 @@
 package cn.max.core.bean.product;
 
+import cn.max.core.web.Constants;
+
 import java.io.Serializable;
 
 /**
  * 图片
  * @author max
+ * @Date [2014-3-28 下午04:38:53]
+ */
+/**
+ * 图片
+ * @author maxwell
  * @Date [2014-3-28 下午04:38:53]
  */
 public class Img implements Serializable {
@@ -17,6 +24,11 @@ public class Img implements Serializable {
 	private Integer productId;
 	private String url;
 	private Integer isDef;
+
+	//获取全Url
+	public String getAllUrl(){
+		return Constants.IMAGE_URL + url;
+	}
 
 	public Integer getId() {
 		return id;

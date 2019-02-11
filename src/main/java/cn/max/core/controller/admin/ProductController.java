@@ -146,7 +146,7 @@ public class ProductController {
 	public String add(Product product, Img img){
 		//1:商品 表   图片表   SKu表
 		product.setImg(img);
-		//传商品对象到Servcie
+		//传商品对象到Servcie 需要增加事务 所以在service中写
 		productService.addProduct(product);
 
 		return "redirect:/product/list.do";
