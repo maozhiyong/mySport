@@ -8,6 +8,7 @@ public class PageBean<T> {
     private Integer currentPage = Integer.valueOf(1);
     private Integer pageSize;
     private Integer totalCount;
+    private List<String> pageView;
 
     public PageBean(List<T> pageData, int totalCount, int pageSize) {
         this.pageData = pageData;
@@ -89,10 +90,10 @@ public class PageBean<T> {
     }
 
     public static int calculateCurrentPageNum(Integer pageNo) {
-        if (pageNo == null ||  pageNo <= 5) {
+        if (pageNo == null ||  pageNo <= 0) {
             return 1;
         } else {
-            return (pageNo-1)/5;
+            return pageNo;
         }
     }
 
@@ -100,7 +101,6 @@ public class PageBean<T> {
         return pageView;
     }
 
-    private List<String> pageView;
     public void pageView(String url, String parameter) {
         pageView = new ArrayList<>();
         pageView.add("<font size=2>首页</font>");

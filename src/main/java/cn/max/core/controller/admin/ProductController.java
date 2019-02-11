@@ -1,20 +1,15 @@
 package cn.max.core.controller.admin;
 
-
 import cn.max.core.bean.PageBean;
-import cn.max.core.bean.product.Brand;
-import cn.max.core.query.product.BrandQuery;
-import cn.max.core.query.product.ProductQuery;
-import cn.max.core.service.product.BrandService;
-import cn.max.core.service.product.ProductService;
+import cn.max.core.bean.product.*;
+import cn.max.core.query.product.*;
+import cn.max.core.service.product.*;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import java.util.List;
-
 
 /**
  * 后台商品管理
@@ -31,24 +26,30 @@ public class ProductController {
 	private BrandService brandService;
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private TypeService typeService;
+	@Autowired
+	private FeatureService featureService;
+	@Autowired
+	private ColorService colorService;
 
 	//商品列表
 	@RequestMapping(value = "/product/list.do")
 	public String list(Integer pageNo,String name,Integer brandId,Integer isShow,ModelMap model){
-		
+		//品牌条件对象
 		BrandQuery brandQuery = new BrandQuery();
-		
+		//设置指定字段
 		brandQuery.setFields("id,name");
+		//设置可见
 		brandQuery.setIsDisplay(1);
 		//加载品牌
 		List<Brand> brands = brandService.getBrandList(brandQuery);
-		
+		//显示在页面
 		model.addAttribute("brands", brands);
-		
-		
+
 		//分页参数
 		StringBuilder params = new StringBuilder();
-		
+
 		//商品条件对象
 		ProductQuery productQuery = new ProductQuery();
 		//1:判断条件是为Null
@@ -56,9 +57,9 @@ public class ProductController {
 			productQuery.setName(name);
 			//要求模糊查询
 			productQuery.setNameLike(true);
-			
+
 			params.append("&name=").append(name);
-			
+
 			//回显查询条件
 			model.addAttribute("name", name);
 		}
@@ -66,7 +67,7 @@ public class ProductController {
 		if(null != brandId){
 			productQuery.setBrandId(brandId);
 			params.append("&").append("brandId=").append(brandId);
-			
+
 			//回显查询条件
 			model.addAttribute("brandId", brandId);
 		}
@@ -74,29 +75,111 @@ public class ProductController {
 		if(null != isShow){
 			productQuery.setIsShow(isShow);
 			params.append("&").append("isShow=").append(isShow);
-			
+
 			//回显查询条件
 			model.addAttribute("isShow", isShow);
 		}else{
-			productQuery.setIsShow(0);
-			params.append("&").append("isShow=").append(0);
+			productQuery.setIsShow(1);
+			params.append("&").append("isShow=").append(1);
 			//回显查询条件
-			model.addAttribute("isShow", 0);
+			model.addAttribute("isShow", 1);
 		}
 		//设置页号
 		productQuery.setPageNo(PageBean.calculateCurrentPageNum(pageNo));
 		//设置每页数
 		productQuery.setPageSize(5);
-		
-		//加载带有分页的商品
-		PageBean productListWithPage = productService.getProductListWithPage(productQuery);
+		//按照ID倒排
+		productQuery.orderbyId(false);
 
-		//分页页面展示
+		//加载带有分页的商品
+		PageBean pagination = productService.getProductListWithPage(productQuery);
+
+		//分页页面展示    //String params = "brandId=1&name=2014瑜伽服套装新款&pageNo=1";
 		String url = "/product/list.do";
-		productListWithPage.pageView(url, params.toString());
-		
-		model.addAttribute("pagination", productListWithPage);
-		
+		pagination.pageView(url, params.toString());
+
+		model.addAttribute("pagination", pagination);
+
 		return "product/list";
+	}
+	//去添加页面
+	@RequestMapping(value = "/product/toAdd.do")
+	public String toAdd(ModelMap model){
+		//加载商品类型
+		TypeQuery typeQuery = new TypeQuery();
+		//指定查询哪些字段
+		typeQuery.setFields("id,name");
+		typeQuery.setIsDisplay(1);
+		typeQuery.setParentId(0);
+		List<Type> types = typeService.getTypeList(typeQuery);
+		//显示在页面
+		model.addAttribute("types", types);
+		//加载商品品牌
+		//品牌条件对象
+		BrandQuery brandQuery = new BrandQuery();
+		//设置指定字段
+		brandQuery.setFields("id,name");
+		//设置可见
+		brandQuery.setIsDisplay(1);
+		//加载品牌
+		List<Brand> brands = brandService.getBrandList(brandQuery);
+		//显示在页面
+		model.addAttribute("brands", brands);
+		//加载商品属性
+		FeatureQuery featureQuery = new FeatureQuery();
+
+		List<Feature> features = featureService.getFeatureList(featureQuery);
+		//显示在页面
+		model.addAttribute("features", features);
+		//加载颜色
+		ColorQuery colorQuery = new ColorQuery();
+		colorQuery.setParentId(0);
+		List<Color> colors = colorService.getColorList(colorQuery);
+		//显示在页面
+		model.addAttribute("colors", colors);
+
+		return "product/add";
+	}
+	//商品添加
+	@RequestMapping(value = "/product/add.do")
+	public String add(Product product, Img img){
+		//1:商品 表   图片表   SKu表
+		product.setImg(img);
+		//传商品对象到Servcie
+		productService.addProduct(product);
+
+		return "redirect:/product/list.do";
+	}
+	//上架
+	@RequestMapping(value = "/product/isShow.do")
+	public String isShow(Integer[] ids,Integer pageNo,String name,Integer brandId,Integer isShow,ModelMap model){
+		//实例化商品
+		Product product = new Product();
+		product.setIsShow(1);
+		//上架
+		if(null != ids && ids.length >0){
+			for(Integer id : ids){
+				product.setId(id);
+				//修改上架状态
+				productService.updateProductByKey(product);
+			}
+		}
+		//TODO  静态化
+
+		//判断
+		if(null != pageNo){
+			model.addAttribute("pageNo", pageNo);
+		}
+		if(StringUtils.isNotBlank(name)){
+			model.addAttribute("name", name);
+		}
+		if(null != brandId){
+			model.addAttribute("brandId", brandId);
+		}
+		if(null != isShow){
+			model.addAttribute("isShow", isShow);
+		}
+
+		return "redirect:/product/list.do";
 	}
 }
