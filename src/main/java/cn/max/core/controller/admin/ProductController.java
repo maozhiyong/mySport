@@ -111,7 +111,7 @@ public class ProductController {
 		//指定查询哪些字段
 		typeQuery.setFields("id,name");
 		typeQuery.setIsDisplay(1);
-		typeQuery.setParentId(0);
+		typeQuery.setParentId(1);
 		List<Type> types = typeService.getTypeList(typeQuery);
 		//显示在页面
 		model.addAttribute("types", types);
