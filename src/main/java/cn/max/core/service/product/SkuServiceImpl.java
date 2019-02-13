@@ -5,16 +5,16 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.max.core.bean.PageBean;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import cn.max.core.bean.product.Sku;
 import cn.max.core.dao.product.SkuDao;
 import cn.max.core.query.product.SkuQuery;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+
 /**
  * 最小销售单元事务层
  * @author max
- *
  */
 @Service
 @Transactional
@@ -22,10 +22,12 @@ public class SkuServiceImpl implements SkuService {
 
 	@Resource
 	SkuDao skuDao;
+	@Resource
+	ColorService colorService;
 
 	/**
 	 * 插入数据库
-	 * 
+	 *
 	 * @return
 	 */
 	public Integer addSku(Sku sku) {
@@ -39,7 +41,7 @@ public class SkuServiceImpl implements SkuService {
 	public Sku getSkuByKey(Integer id) {
 		return skuDao.getSkuByKey(id);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Sku> getSkusByKeys(List<Integer> idList) {
 		return skuDao.getSkusByKeys(idList);
@@ -47,7 +49,7 @@ public class SkuServiceImpl implements SkuService {
 
 	/**
 	 * 根据主键删除
-	 * 
+	 *
 	 * @return
 	 */
 	public Integer deleteByKey(Integer id) {
@@ -60,13 +62,13 @@ public class SkuServiceImpl implements SkuService {
 
 	/**
 	 * 根据主键更新
-	 * 
+	 *
 	 * @return
 	 */
 	public Integer updateSkuByKey(Sku sku) {
 		return skuDao.updateSkuByKey(sku);
 	}
-	
+
 	@Transactional(readOnly = true)
 	public PageBean getSkuListWithPage(SkuQuery skuQuery) {
 		PageBean pageBean = new PageBean();
@@ -76,9 +78,25 @@ public class SkuServiceImpl implements SkuService {
 		pageBean.setTotalCount(skuDao.getSkuListCount(skuQuery));
 		return pageBean;
 	}
-	
+
 	@Transactional(readOnly = true)
 	public List<Sku> getSkuList(SkuQuery skuQuery) {
-		return skuDao.getSkuList(skuQuery);
+		List<Sku> skus = skuDao.getSkuList(skuQuery);
+		//颜色加载完结
+		for(Sku sku : skus){
+			sku.setColor(colorService.getColorByKey(sku.getColorId()));
+		}
+		return skus;
+	}
+
+	@Override
+	public List<Sku> getStock(Integer productId) {
+		// TODO Auto-generated method stub
+		List<Sku> skus = skuDao.getStock(productId);
+		//颜色加载完结
+		for(Sku sku : skus){
+			sku.setColor(colorService.getColorByKey(sku.getColorId()));
+		}
+		return skus;
 	}
 }
