@@ -227,39 +227,39 @@
 		<div class="box bg_white">
 			<ul class="uls i_150x150 x4_150x150">
 				<li>
-					<a href="productDetail.jsp" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
+					<a href="/product/detail.shtml" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
 					<dl>
-						<dt><a href="productDetail.jsp" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
+						<dt><a href="/productDetail.shtml" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
 						<dd class="h40">依琦莲2014瑜伽服套装新！</dd>
 						<dd class="orange">￥120 ~ ￥150</dd>
-						<dd><a href="productDetail.jsp" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
+						<dd><a href="/productDetail.shtml" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
 					</dl>
 				</li>
 				<li>
-					<a href="productDetail.jsp" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
+					<a href="/product/detail.shtml" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
 					<dl>
-						<dt><a href="productDetail.jsp" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
+						<dt><a href="/product/detail.shtml" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
 						<dd class="h40">依琦莲2014瑜伽服套装新！</dd>
 						<dd class="orange">￥120 ~ ￥150</dd>
-						<dd><a href="productDetail.jsp" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
+						<dd><a href="/product/detail.shtml" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
 					</dl>
 				</li>
 				<li>
-					<a href="productDetail.jsp" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
+					<a href="/product/detail.shtml" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
 					<dl>
-						<dt><a href="productDetail.jsp" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
+						<dt><a href="/product/detail.shtml" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
 						<dd class="h40">依琦莲2014瑜伽服套装新！</dd>
 						<dd class="orange">￥120 ~ ￥150</dd>
-						<dd><a href="productDetail.jsp" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
+						<dd><a href="/product/detail.shtml" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
 					</dl>
 				</li>
 				<li>
-					<a href="productDetail.jsp" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
+					<a href="/product/detail.shtml" title="富一代" target="_blank" class="pic"><img src="	/res/img/pic/ppp.jpg" alt="依琦莲2014瑜伽服套装新" /></a>
 					<dl>
-						<dt><a href="productDetail.jsp" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
+						<dt><a href="/product/detail.shtml" title="依琦莲2014瑜伽服套装新" target="_blank">依琦莲2014瑜伽服套装新</a></dt>
 						<dd class="h40">依琦莲2014瑜伽服套装新！</dd>
 						<dd class="orange">￥120 ~ ￥150</dd>
-						<dd><a href="productDetail.jsp" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
+						<dd><a href="/product/detail.shtml" title="立即抢购" class="inb btn70x21 mr">立即抢购</a></dd>
 					</dl>
 				</li>
 			</ul>
@@ -327,10 +327,10 @@
 			<ul class="uls i_150x150 x4_150x150b">
 				<c:forEach items="${pagination.pageData }" var="entry">
 					<li>
-						<a href="productDetail.jsp" title="${entry.name }" target="_blank" class="pic"><img src="${entry.img.allUrl }" alt="${entry.name }" /></a>
+						<a href="javascript:void(0)" onclick="window.open('/product/detail.shtml?id=${entry.id}')" title="${entry.name }" class="pic"><img src="${entry.img.allUrl }" alt="${entry.name }" /></a>
 						<dl>
 							<!-- dt 10个文字+... -->
-							<dt><a href="productDetail.jsp" title="${entry.name }" target="_blank">${entry.name }</a></dt>
+							<dt><a href="javascript:void(0)"  onclick="window.location.href='/product/detail.shtml?id=${entry.id}'" title="${entry.name }" target="_blank">${entry.name }</a></dt>
 							<!-- dt 25个文字+... -->
 							<dd class="h40">${entry.name }</dd>
 							<dd class="orange">￥128.00</dd>
