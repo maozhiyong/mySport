@@ -18,7 +18,7 @@ import freemarker.template.Template;
 
 /**
  * 生成静态页实现类
- * @author lx
+ * @author max
  *
  */
 public class StaticPageServiceImpl implements StaticPageService,ServletContextAware{
@@ -32,7 +32,6 @@ public class StaticPageServiceImpl implements StaticPageService,ServletContextAw
 
 	//静态化方法
 	public void productIndex(Map<String,Object> root,Integer id){
-		//String dir = "C:\Users\lx\workspace\babasport12\";
 		//设置模板的目录
 		//conf.setDirectoryForTemplateLoading(dir);
 		
