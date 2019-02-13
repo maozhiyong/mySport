@@ -285,5 +285,11 @@
 		</dependency>
 		<!--jcaptcha -->
 
+	  <!-- https://mvnrepository.com/artifact/opensymphony/oscache -->
+	  <dependency>
+		  <groupId>opensymphony</groupId>
+		  <artifactId>oscache</artifactId>
+		  <version>2.3</version>
+	  </dependency>
   </dependencies>
 </project>
