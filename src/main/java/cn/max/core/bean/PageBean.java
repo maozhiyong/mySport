@@ -106,7 +106,7 @@ public class PageBean<T> {
         pageView.add("<font size=2>首页</font>");
         pageView.add("<font size=2>上一页</font>");
 
-        int pageCount = totalCount/pageSize;
+        int pageCount = totalCount/pageSize+1;
         for (int i = 1; i <= pageCount; i++) {
             if (currentPage == i) {
                 pageView.add("<strong>"+currentPage+"</strong>");
