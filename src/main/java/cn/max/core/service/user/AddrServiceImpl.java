@@ -13,7 +13,7 @@ import cn.max.core.query.user.AddrQuery;
 /**
  * 地址
  * @author max
- * @Date [2014-3-27 下午03:31:57]
+ *
  */
 @Service
 @Transactional

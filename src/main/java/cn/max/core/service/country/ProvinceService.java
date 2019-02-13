@@ -8,7 +8,7 @@ import cn.max.core.query.country.ProvinceQuery;
 /**
  * 
  * @author max
- * @Date [2014-3-28 下午01:50:28]
+ *
  */
 public interface ProvinceService {
 	/**

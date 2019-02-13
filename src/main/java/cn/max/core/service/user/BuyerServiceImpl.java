@@ -14,7 +14,7 @@ import cn.max.core.query.user.BuyerQuery;
 /**
  * 购买者
  * @author max
- * @Date [2014-3-27 下午03:31:57]
+ *
  */
 @Service
 @Transactional

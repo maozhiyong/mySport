@@ -13,7 +13,7 @@ import cn.max.core.query.product.ColorQuery;
 /**
  * 颜色
  * @author max
- * @Date [2014-3-27 下午03:31:57]
+ *
  */
 @Service
 @Transactional

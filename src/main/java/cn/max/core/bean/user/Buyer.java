@@ -6,7 +6,7 @@ import java.util.Date;
 /**
  * 购买者
  * @author max
- * @Date [2014-3-28 下午04:38:53]
+ *
  */
 public class Buyer implements Serializable {
 	/**

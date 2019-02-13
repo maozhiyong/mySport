@@ -8,7 +8,7 @@ import cn.max.core.query.product.ImgQuery;
 /**
  * 
  * @author max
- * @Date [2014-3-28 下午01:50:28]
+ *
  */
 public interface ImgService {
 	/**

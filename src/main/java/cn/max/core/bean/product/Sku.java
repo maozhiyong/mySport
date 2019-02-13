@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * 最小销售单元
  * @author max
- * @Date [2014-3-28 下午04:38:53]
+ *
  */
 public class Sku implements Serializable {
 	/**
@@ -36,6 +36,17 @@ public class Sku implements Serializable {
 	private Integer skuType;
 	private Integer sales;
 
+	//添加颜色对象
+	private Color color;
+
+
+
+	public Color getColor() {
+		return color;
+	}
+	public void setColor(Color color) {
+		this.color = color;
+	}
 	public Integer getId() {
 		return id;
 	}

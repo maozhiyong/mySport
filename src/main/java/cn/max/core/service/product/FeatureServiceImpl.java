@@ -13,7 +13,7 @@ import cn.max.core.query.product.FeatureQuery;
 /**
  * 商品属性事务层
  * @author max
- * @Date [2014-3-27 下午03:31:57]
+ *
  */
 @Service
 @Transactional

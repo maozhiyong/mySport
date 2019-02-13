@@ -14,7 +14,7 @@ import cn.max.core.query.order.OrderQuery;
 /**
  * 订单主
  * @author max
- * @Date [2014-3-27 下午03:31:57]
+ *
  */
 @Service
 @Transactional

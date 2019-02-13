@@ -9,7 +9,7 @@ import cn.max.core.query.BaseQuery;
 /**
  * 
  * @author max
- * @Date [2014-3-28 下午05:58:00]
+ *
  */
 public class OrderQuery extends BaseQuery {
 	/**

@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 省
  * @author max
- * @Date [2014-3-28 下午04:38:53]
+ *
  */
 public class Province implements Serializable {
 	/**

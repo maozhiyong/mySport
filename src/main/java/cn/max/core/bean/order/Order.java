@@ -6,7 +6,7 @@ import java.io.Serializable;
 /**
  * 订单  --主
  * @author max
- * @Date [2014-3-28 下午04:38:53]
+ *
  */
 public class Order implements Serializable {
 	/**

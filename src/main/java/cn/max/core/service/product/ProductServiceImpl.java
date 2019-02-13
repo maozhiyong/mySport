@@ -18,8 +18,8 @@ import cn.max.core.dao.product.ProductDao;
 import cn.max.core.query.product.ProductQuery;
 /**
  * 商品事务层
- * @author lixu
- * @Date [2014-3-27 下午03:31:57]
+ * @author max
+ *
  */
 @Service
 @Transactional
