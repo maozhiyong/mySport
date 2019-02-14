@@ -20,5 +20,18 @@
 		<property name="prefix" value="/WEB-INF/front_page/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
-	
+
+	<!-- 映射器 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
+		<property name="interceptors">
+			<list>
+				<bean class="cn.max.core.web.SpringmvcInterceptor">
+					<property name="adminId" value="2"/>
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- 适配器 -->
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
 </beans>
