@@ -291,5 +291,13 @@
 		  <artifactId>oscache</artifactId>
 		  <version>2.3</version>
 	  </dependency>
+
+	  <!-- https://mvnrepository.com/artifact/com.octo.captcha/jcaptcha-all -->
+	  <dependency>
+		  <groupId>com.octo.captcha</groupId>
+		  <artifactId>jcaptcha-all</artifactId>
+		  <version>1.0-RC6</version>
+	  </dependency>
+
   </dependencies>
 </project>

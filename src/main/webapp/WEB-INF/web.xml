@@ -98,4 +98,13 @@
 		<!--<servlet-name>img</servlet-name>-->
 		<!--<url-pattern>*.png1</url-pattern>-->
 	<!--</servlet-mapping>-->
+
+	<servlet>
+		<servlet-name>captcha</servlet-name>
+		<servlet-class>cn.max.common.captcha.JcaptchaServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>captcha</servlet-name>
+		<url-pattern>/captcha.svl</url-pattern>
+	</servlet-mapping>
 </web-app>
