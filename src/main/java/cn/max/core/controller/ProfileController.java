@@ -26,7 +26,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.octo.captcha.service.image.ImageCaptchaService;
 
@@ -52,9 +51,10 @@ public class ProfileController {
 
 	//GET
 	@RequestMapping(value = "/shopping/login.shtml",method=RequestMethod.GET)
-	public String login(){
+	public String toLogin(){
 		return "buyer/login";
 	}
+
 	//POST
 	/**
 	 * 1:验证码是否为null
@@ -71,54 +71,64 @@ public class ProfileController {
 	 * @return
 	 */
 	@RequestMapping(value = "/shopping/login.shtml",method=RequestMethod.POST)
-	public String login(Buyer buyer, String captcha, String returnUrl, ModelMap model, HttpServletRequest request){
+	public String login(Buyer buyer, String captcha, String returnUrl, ModelMap model, HttpServletRequest request) {
+
 		//验证码是否为null
-		if(StringUtils.isNotBlank(captcha)){
-			//1:JSESSIONID
-			//2验证码
-			if(imageCaptchaService.validateResponseForID(sessionProvider.getSessionId(request), captcha)){
-				if(null != buyer && StringUtils.isNotBlank(buyer.getUsername())){
-					if(StringUtils.isNotBlank(buyer.getPassword())){
-						Buyer b = buyerService.getBuyerByKey(buyer.getUsername());
-						if(null != b){
-							//
-							if(b.getPassword().equals(md5Pwd.encode(buyer.getPassword()))){
-								//把用户对象放在Session
-								sessionProvider.setAttribute(request, Constants.BUYER_SESSION, b);
-								if(StringUtils.isNotBlank(returnUrl)){
-									return "redirect:" + returnUrl;
-								}else{
-									//个人中心
-									return "redirect:/buyer/index.shtml" ;
-								}
-							}else{
-								model.addAttribute("error", "密码错误");
-							}
-						}else{
-							model.addAttribute("error", "用户名输入错误");
-						}
-					}else{
-						model.addAttribute("error", "请输入密码");
-					}
-				}else{
-					model.addAttribute("error", "请输入用户名");
-				}
-			}else{
-				model.addAttribute("error", "验证码输入错误");
-			}
-		}else{
+		if (StringUtils.isBlank(captcha)) {
 			model.addAttribute("error", "请填写验证码");
+			return "buyer/login";
 		}
-		return "buyer/login";
+
+		//用户名是否为null
+		if (null == buyer || StringUtils.isBlank(buyer.getUsername())) {
+			model.addAttribute("error", "请输入用户名");
+			return "buyer/login";
+		}
+
+		//密码是否为null
+		if (StringUtils.isBlank(buyer.getPassword())) {
+			model.addAttribute("error", "请输入密码");
+			return "buyer/login";
+		}
+
+		// 验证码验证
+		if (!imageCaptchaService.validateResponseForID(sessionProvider.getSessionId(request), captcha)) {
+			model.addAttribute("error", "验证码输入错误");
+			return "buyer/login";
+		}
+
+		//用户名验证
+		Buyer buyerInfo = buyerService.getBuyerByKey(buyer.getUsername());
+		if (null == buyerInfo) {
+			model.addAttribute("error", "用户名输入错误");
+			return "buyer/login";
+		}
+
+		// 密码验证
+		if (!buyerInfo.getPassword().equals(md5Pwd.encode(buyer.getPassword()))) {
+			model.addAttribute("error", "密码错误");
+			return "buyer/login";
+		}
+
+		//把用户对象放在Session
+		sessionProvider.setAttribute(request, Constants.BUYER_SESSION, buyerInfo);
+		if (StringUtils.isNotBlank(returnUrl)) {
+			return "redirect:" + returnUrl;
+		} else {
+			//个人中心
+			return "redirect:/buyer/index.shtml";
+		}
 	}
+
 	//个人中心
 	@RequestMapping(value = "/buyer/index.shtml")
 	public String index(){
 		return "buyer/index";
 	}
+
 	//个人资料
 	@RequestMapping(value = "/buyer/profile.shtml")
-	public String profile(HttpServletRequest request,ModelMap model){
+	public String profile(HttpServletRequest request, ModelMap model){
 		//加载用户
 		Buyer buyer = (Buyer) sessionProvider.getAttribute(request, Constants.BUYER_SESSION);
 		Buyer b = buyerService.getBuyerByKey(buyer.getUsername());
@@ -139,6 +149,7 @@ public class ProfileController {
 		
 		return "buyer/profile";
 	}
+
 	//
 	@RequestMapping(value = "/buyer/city.shtml")
 	public void city(String code,HttpServletResponse response){
@@ -151,6 +162,7 @@ public class ProfileController {
 		ResponseUtils.renderJson(response, jo.toString());
 		
 	}
+
 	//收货地址
 	@RequestMapping(value = "/buyer/deliver_address.shtml")
 	public String address(){
