@@ -166,9 +166,11 @@ function addCart(){
 }
 //立即购买
 function buy(productId){
-	window.location.href='cart.jsp';
+	window.location.href='/shopping/buyCart.shtml?skuId=' + skuId + "&amount=" + $("#num").val() + "&buyLimit=" + buyLimit + "&productId=" + productId;
+	//:/shopping/buyCart.shtml?skuId=500&amount=2&buyLimit=6&productId=265
 	//skuId  productId  件数   限购
 }
+
 </script>
 </head>
 <body>

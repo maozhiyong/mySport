@@ -169,7 +169,8 @@
 		}
 		//立即购买
 		function buy(productId){
-			window.location.href='cart.jsp';
+			window.location.href='/shopping/buyCart.shtml?skuId=' + skuId + "&amount=" + $("#num").val() + "&buyLimit=" + buyLimit + "&productId=" + productId;
+			//:/shopping/buyCart.shtml?skuId=500&amount=2&buyLimit=6&productId=265
 			//skuId  productId  件数   限购
 		}
 	</script>
@@ -292,7 +293,7 @@
 				<a id="sub" class="inb arr" style="border: 1px solid #919191;width: 10px;height: 10px;line-height: 10px;text-align: center;" title="减" href="javascript:void(0);" >-</a>
 				<input id="num" type="text" value="1" name="" size="1" readonly="readonly">
 				<a id="add" class="inb arr" style="border: 1px solid #919191;width: 10px;height: 10px;line-height: 10px;text-align: center;" title="加" href="javascript:void(0);">+</a></li>
-			<li class="submit"><input type="button" value="" class="hand btn138x40" onclick="buy();"/><input type="button" value="" class="hand btn138x40b" onclick="addCart()"/></li>
+			<li class="submit"><input type="button" value="" class="hand btn138x40" onclick="buy('${product.id}');"/><input type="button" value="" class="hand btn138x40b" onclick="addCart()"/></li>
 		</ul>
 	</div>
 </div>
@@ -426,7 +427,7 @@
 			<a href="javascript:void(0);" title="包装清单" rel="#detailTab3">包装清单</a></em><cite></cite></h2>
 		<div class="box bg_white ofc">
 			<div id="detailTab1" class="detail">
-				<img src="/res/img/pic/p800b.jpg" /><img src="/res/img/pic/p800a.jpg" /><img src="/res/img/pic/p800c.jpg" /><img src="/res/img/pic/p800d.jpg" />
+				${product.description }
 			</div>
 
 			<div id="detailTab2" style="display:none">
@@ -442,7 +443,7 @@
 			<div id="detailTab3" class="detail" style="display:none">
 
 	<pre class="f14">
-		上衣*1 裤子*1 抹胸*1 包装*1 
+		${product.packageList }
 	</pre>
 
 			</div>
