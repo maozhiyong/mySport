@@ -7,7 +7,6 @@ import java.io.Serializable;
 /**
  * 最小销售单元
  * @author max
- *
  */
 public class Sku implements Serializable {
 	/**
@@ -38,9 +37,19 @@ public class Sku implements Serializable {
 
 	//添加颜色对象
 	private Color color;
+	//放一个商品对象
+	private Product product;
 
 
 
+
+
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
 	public Color getColor() {
 		return color;
 	}
