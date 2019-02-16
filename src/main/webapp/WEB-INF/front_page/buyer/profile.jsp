@@ -27,11 +27,10 @@
 		}
 		//保存
 		function addProfile(){
-			/* 	var province = $("#province :selected").text();
-                var province = $("#province").find("option:selected").text(); */
+			//var province = $("#province :selected").text();
+			var province = $("#province").find("option:selected").text();
+			alert(province);
 
-
-			//alert(province);
 			//复选框定位
 			//$("input[name='statusAddr']").attr("checked",true);
 			//单选框定位
@@ -40,9 +39,11 @@
 				if(v == "MAN"){
 					$(this).attr("checked",true);
 				}
+				alert(v);
 			});
-			//var v = $("input[name='gender']:checked").val();
-			//alert(v);
+
+			var v = $("input[name='gender']:checked").val();
+			alert(v);
 
 		}
 	</script>
