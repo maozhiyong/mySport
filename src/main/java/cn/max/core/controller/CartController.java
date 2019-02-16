@@ -1,9 +1,7 @@
 package cn.max.core.controller;
 
-import java.io.IOException;
 import java.io.StringWriter;
 import java.util.List;
-
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -30,7 +28,7 @@ public class CartController {
 
 	//购买按钮
 	@RequestMapping(value = "/shopping/buyCart.shtml")
-	public String buyCart(Integer skuId,Integer amount,Integer buyLimit,Integer productId,HttpServletRequest request ,HttpServletResponse response,ModelMap model){
+	public String buyCart(Integer skuId, Integer amount, Integer buyLimit, Integer productId, HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		//第一步:Sku
 			//springmvc 
 			ObjectMapper  om = new ObjectMapper();
