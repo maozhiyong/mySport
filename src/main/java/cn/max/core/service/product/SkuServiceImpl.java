@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import cn.max.core.bean.PageBean;
+import cn.max.core.bean.product.Product;
 import cn.max.core.bean.product.Sku;
 import cn.max.core.dao.product.SkuDao;
 import cn.max.core.query.product.SkuQuery;
@@ -24,6 +25,8 @@ public class SkuServiceImpl implements SkuService {
 	SkuDao skuDao;
 	@Resource
 	ColorService colorService;
+	@Resource
+	ProductService productService;
 
 	/**
 	 * 插入数据库
@@ -39,7 +42,15 @@ public class SkuServiceImpl implements SkuService {
 	 */
 	@Transactional(readOnly = true)
 	public Sku getSkuByKey(Integer id) {
-		return skuDao.getSkuByKey(id);
+		Sku sku = skuDao.getSkuByKey(id);
+		//通过商品ID
+		Product product = productService.getProductByKey(sku.getProductId());
+
+		sku.setProduct(product);
+		//颜色加载
+		sku.setColor(colorService.getColorByKey(sku.getColorId()));
+
+		return sku;
 	}
 
 	@Transactional(readOnly = true)

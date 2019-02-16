@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8" ?>  
+<?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.max.core.dao.order.DetailDao">
@@ -15,66 +15,66 @@
 	<!-- Select SQL -->
 	<sql id="detailSelector">
 		SELECT
-			<if test="fields != null">
-				${fields}
-			</if>
-			<if test="fields == null">
+		<if test="fields != null">
+			${fields}
+		</if>
+		<if test="fields == null">
 			id,order_id,product_no,product_name,color,size,sku_price,amount
-			</if>
+		</if>
 		FROM bbs_detail
 	</sql>
 	<sql id="detailListWhere">
 		<where>
-				<if test="id != null">
-					and id=#{id}
-				</if>
-				<if test="orderId != null">
-					and order_id=#{orderId}
-				</if>
-				<if test="productNo != null">
+			<if test="id != null">
+				and id=#{id}
+			</if>
+			<if test="orderId != null">
+				and order_id=#{orderId}
+			</if>
+			<if test="productNo != null">
 				<if test="productNoLike == false">
 					and product_no=#{productNo}
 				</if>
 				<if test="productNoLike == true">
 					and  product_no like "%"#{productNo}"%"
 				</if>
-				</if>
-				<if test="productName != null">
+			</if>
+			<if test="productName != null">
 				<if test="productNameLike == false">
 					and product_name=#{productName}
 				</if>
 				<if test="productNameLike == true">
 					and  product_name like "%"#{productName}"%"
 				</if>
-				</if>
-				<if test="color != null">
+			</if>
+			<if test="color != null">
 				<if test="colorLike == false">
 					and color=#{color}
 				</if>
 				<if test="colorLike == true">
 					and  color like "%"#{color}"%"
 				</if>
-				</if>
-				<if test="size != null">
+			</if>
+			<if test="size != null">
 				<if test="sizeLike == false">
 					and size=#{size}
 				</if>
 				<if test="sizeLike == true">
 					and  size like "%"#{size}"%"
 				</if>
-				</if>
-				<if test="skuPrice != null">
-					and sku_price=#{skuPrice}
-				</if>
-				<if test="amount != null">
-					and amount=#{amount}
-				</if>
+			</if>
+			<if test="skuPrice != null">
+				and sku_price=#{skuPrice}
+			</if>
+			<if test="amount != null">
+				and amount=#{amount}
+			</if>
 		</where>
 	</sql>
 
 	<sql id="detailListOrder">
 		<if test="orderFields != null and orderFields.size >0">
-		order by 
+			order by
 			<foreach collection="orderFields" separator="," item="orderField">
 				${orderField.fieldName} ${orderField.order}
 			</foreach>
@@ -91,7 +91,7 @@
 	<select id="getDetailByKey" resultMap="detail" parameterType="hashMap">
 		SELECT id,order_id,product_no,product_name,color,size,sku_price,amount FROM bbs_detail
 		WHERE
-		id=#{id}
+			id=#{id}
 	</select>
 	<select id="getDetailsByKeys" resultMap="detail" parameterType="ArrayList">
 		SELECT id,order_id,product_no,product_name,color,size,sku_price,amount FROM bbs_detail
@@ -106,7 +106,7 @@
 	<delete id="deleteByKey" parameterType="hashMap">
 		DELETE FROM bbs_detail
 		WHERE
-		id=#{id}
+			id=#{id}
 	</delete>
 
 	<!-- 根据主键批量删除 -->
@@ -175,57 +175,57 @@
 	<insert id="addDetail" parameterType="Detail">
 		INSERT INTO bbs_detail
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-				<if test="id != null">
-					id,
-				</if>
-				<if test="orderId != null">
-					order_id,
-				</if>
-				<if test="productNo != null">
-					product_no,
-				</if>
-				<if test="productName != null">
-					product_name,
-				</if>
-				<if test="color != null">
-					color,
-				</if>
-				<if test="size != null">
-					size,
-				</if>
-				<if test="skuPrice != null">
-					sku_price,
-				</if>
-					<if test="amount != null">
-						amount
-					</if>
+			<if test="id != null">
+				id,
+			</if>
+			<if test="orderId != null">
+				order_id,
+			</if>
+			<if test="productNo != null">
+				product_no,
+			</if>
+			<if test="productName != null">
+				product_name,
+			</if>
+			<if test="color != null">
+				color,
+			</if>
+			<if test="size != null">
+				size,
+			</if>
+			<if test="skuPrice != null">
+				sku_price,
+			</if>
+			<if test="amount != null">
+				amount
+			</if>
 		</trim>
 		VALUES
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-					<if test="id != null">
-						#{id},
-					</if>
-					<if test="orderId != null">
-						#{orderId},
-					</if>
-					<if test="productNo != null">
-						#{productNo},
-					</if>
-					<if test="productName != null">
-						#{productName},
-					</if>
-					<if test="color != null">
-						#{color},
-					</if>
-					<if test="size != null">
-						#{size},
-					</if>
-					<if test="skuPrice != null">
-						#{skuPrice},
-					</if>
-					<if test="amount != null">
-						#{amount}
-					</if>
+			<if test="id != null">
+				#{id},
+			</if>
+			<if test="orderId != null">
+				#{orderId},
+			</if>
+			<if test="productNo != null">
+				#{productNo},
+			</if>
+			<if test="productName != null">
+				#{productName},
+			</if>
+			<if test="color != null">
+				#{color},
+			</if>
+			<if test="size != null">
+				#{size},
+			</if>
+			<if test="skuPrice != null">
+				#{skuPrice},
+			</if>
+			<if test="amount != null">
+				#{amount}
+			</if>
 		</trim>
 	</insert>
 </mapper>

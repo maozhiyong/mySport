@@ -12,7 +12,7 @@
 	<script type="text/javascript">
 		//结算
 		function trueBuy(){
-			window.location.href = "productOrder.jsp";
+			window.location.href = "/buyer/trueBuy.shtml";
 		}
 		//消空购物车
 		function clearCart(){
@@ -23,7 +23,7 @@
 
 			var num = $("#num" + skuId).val();
 			if(num == buyLimit){
-				alert("不能买大于" + buyLimit + "件的商品");
+				alert("不能买" + buyLimit + "件商品");
 				return ;
 			}
 			//跟后台进行交互
