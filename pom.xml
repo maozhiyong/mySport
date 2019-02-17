@@ -6,9 +6,9 @@
   <packaging>war</packaging>
   <name>mySport</name>
 	<build>
+
 	<finalName>${project.artifactId}</finalName>
 	<plugins>
-
 		<!-- java编译插件 -->
 		<plugin>
 			<groupId>org.apache.maven.plugins</groupId>
@@ -20,7 +20,19 @@
 				<encoding>UTF-8</encoding>
 			</configuration>
 		</plugin>
-
+		<!--这个是热部署-->
+		<plugin>
+			<groupId>org.apache.tomcat.maven</groupId>
+			<artifactId>tomcat7-maven-plugin</artifactId>
+			<version>2.2</version>
+			<configuration>
+				<url>http://localhost:8080/manager/text</url>
+				<path>/</path>
+				<server>tomcat</server>
+				<username>tomcat</username>
+				<password>123456</password>
+			</configuration>
+		</plugin>
 		<!--tomcat-->
 		<plugin>
 			<groupId>org.apache.tomcat.maven</groupId>
