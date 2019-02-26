@@ -1,8 +1,9 @@
 package cn.max;
 
-import java.util.Map;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+import java.util.*;
 import java.util.Map.Entry;
-import java.util.Set;
 
 import cn.max.core.bean.user.Buyer;
 import frame.SpringJunitTest;
@@ -23,9 +24,10 @@ public class TestMemcached extends SpringJunitTest {
 	private MemCachedClient memCachedClient;
 	@Test
 	public void testAdd() throws Exception {
-		memCachedClient.set("a", "input");
-		String data = (String)memCachedClient.get("a");
+		memCachedClient.set("maxwell", "input");
+		String data = (String)memCachedClient.get("maxwell");
 		System.out.printf(data);
+
 //		Buyer buyer = new Buyer();
 //		buyer.setUsername("范冰冰");
 //

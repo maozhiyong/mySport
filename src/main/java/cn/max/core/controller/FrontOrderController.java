@@ -75,7 +75,7 @@ public class FrontOrderController {
 			//小计
 		}
 		
-		Buyer buyer = (Buyer) sessionProvider.getAttribute(request, Constants.BUYER_SESSION);
+		Buyer buyer = (Buyer) sessionProvider.getAttribute(request, response, Constants.BUYER_SESSION);
 		//用户Id
 		order.setBuyerId(buyer.getUsername());
 		//保存订单   订单详情  二张表

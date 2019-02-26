@@ -32,11 +32,11 @@ public class SpringmvcInterceptor implements HandlerInterceptor{
 		if(adminId != null && adminId == 1){
 			Buyer buyer = new Buyer();
 			buyer.setUsername("fbb2014");
-			sessionProvider.setAttribute(request, Constants.BUYER_SESSION, buyer);
+			sessionProvider.setAttribute(request, response, Constants.BUYER_SESSION, buyer);
 			request.setAttribute("isLogin", true);
 			
 		}else{
-			Buyer buyer = (Buyer) sessionProvider.getAttribute(request, Constants.BUYER_SESSION);
+			Buyer buyer = (Buyer) sessionProvider.getAttribute(request, response, Constants.BUYER_SESSION);
 			boolean flag = false;
 			if(null != buyer){
 				flag = true;

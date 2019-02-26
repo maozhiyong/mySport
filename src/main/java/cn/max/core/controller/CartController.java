@@ -298,7 +298,7 @@ public class CartController {
 					return "redirect:/shopping/buyCart.shtml";
 				}else{
 					//收货地址加载
-					Buyer buyer = (Buyer) sessionProvider.getAttribute(request, Constants.BUYER_SESSION);
+					Buyer buyer = (Buyer) sessionProvider.getAttribute(request, response, Constants.BUYER_SESSION);
 					AddrQuery addrQuery = new AddrQuery();
 					addrQuery.setBuyerId(buyer.getUsername());
 					//默认是1

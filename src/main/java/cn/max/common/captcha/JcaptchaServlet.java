@@ -50,7 +50,7 @@ public class JcaptchaServlet extends HttpServlet {
 			// the same id must be used to validate the response, the session id
 			// is a good candidate!
 
-			String captchaId = session.getSessionId(request);
+			String captchaId = session.getSessionId(request, response);
 			BufferedImage challenge = captchaService.getImageChallengeForID(
 					captchaId, request.getLocale());
 			// Jimi.putImage("image/jpeg", challenge, jpegOutputStream);

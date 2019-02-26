@@ -32,5 +32,23 @@
 			</list>
 		</property>
 	</bean>
-	
+
+	<!-- 切面对象 -->
+	<bean id="cacheInterceptor" class="cn.max.common.web.aop.CacheInterceptor">
+		<property name="expiry" value="4200000"/>
+	</bean>
+
+	<!-- Spring  Aop 配置   get* 配置环绕 -->
+	<aop:config>
+		<!-- 面 -->
+		<aop:aspect ref="cacheInterceptor">
+			<!-- 点 -->
+			<!--<aop:around method="doAround" pointcut="execution(* cn.max.core.service.*.*.get*(..))"/>-->
+			<aop:around method="doAround" pointcut="execution(* cn.max.core.service.*.*.getBrandList(..))"/>
+			<!-- 变更  -->
+			<aop:after method="doAfter" pointcut="execution(* cn.max.core.service.*.*.update*(..))"/>
+			<aop:after method="doAfter" pointcut="execution(* cn.max.core.service.*.*.add*(..))"/>
+			<aop:after method="doAfter" pointcut="execution(* cn.max.core.service.*.*.delete*(..))"/>
+		</aop:aspect>
+	</aop:config>
 </beans>

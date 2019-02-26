@@ -71,7 +71,7 @@ public class ProfileController {
 	 * @return
 	 */
 	@RequestMapping(value = "/shopping/login.shtml",method=RequestMethod.POST)
-	public String login(Buyer buyer, String captcha, String returnUrl, ModelMap model, HttpServletRequest request) {
+	public String login(Buyer buyer, String captcha, String returnUrl, ModelMap model, HttpServletRequest request, HttpServletResponse response) {
 
 		//验证码是否为null
 		if (StringUtils.isBlank(captcha)) {
@@ -92,7 +92,7 @@ public class ProfileController {
 		}
 
 		// 验证码验证
-		if (!imageCaptchaService.validateResponseForID(sessionProvider.getSessionId(request), captcha)) {
+		if (!imageCaptchaService.validateResponseForID(sessionProvider.getSessionId(request, response), captcha)) {
 			model.addAttribute("error", "验证码输入错误");
 			return "buyer/login";
 		}
@@ -111,7 +111,7 @@ public class ProfileController {
 		}
 
 		//把用户对象放在Session
-		sessionProvider.setAttribute(request, Constants.BUYER_SESSION, buyerInfo);
+		sessionProvider.setAttribute(request, response, Constants.BUYER_SESSION, buyerInfo);
 		if (StringUtils.isNotBlank(returnUrl)) {
 			return "redirect:" + returnUrl;
 		} else {
@@ -128,9 +128,9 @@ public class ProfileController {
 
 	//个人资料
 	@RequestMapping(value = "/buyer/profile.shtml")
-	public String profile(HttpServletRequest request, ModelMap model){
+	public String profile(HttpServletRequest request, HttpServletResponse response, ModelMap model){
 		//加载用户
-		Buyer buyer = (Buyer) sessionProvider.getAttribute(request, Constants.BUYER_SESSION);
+		Buyer buyer = (Buyer) sessionProvider.getAttribute(request, response, Constants.BUYER_SESSION);
 		Buyer b = buyerService.getBuyerByKey(buyer.getUsername());
 		model.addAttribute("buyer", b);
 		//省
